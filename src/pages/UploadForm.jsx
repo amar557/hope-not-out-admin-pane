@@ -7,9 +7,9 @@ function UploadForm({ addItem, setAddItem }) {
   const [imges, setimg4] = useState("");
   const [loading, setLoading] = useState(false);
   const [text, settext] = useState("");
-  const [rate, setrate] = useState(0);
+  const [rate, setrate] = useState();
   const [isDiscount, setIsdiscount] = useState(true);
-  const [discountRate, setDiscountRate] = useState(0);
+  const [discountRate, setDiscountRate] = useState();
   const [category, setcategory] = useState("men");
   async function handleDataSubmit(e) {
     e.preventDefault();
@@ -43,11 +43,11 @@ function UploadForm({ addItem, setAddItem }) {
     urls = [];
     setLoading(false);
   }
-  console.log(loading);
+
   return (
     <form
       onSubmit={handleDataSubmit}
-      className="w-1/2 mx-auto mt-5 p-3 bg-slate-400"
+      className="w-1/2 me-auto mt-5 p-3 bg-slate-400"
     >
       <div>
         <div className="block ">
@@ -78,15 +78,15 @@ function UploadForm({ addItem, setAddItem }) {
           id="file-input"
           multiple
           onChange={(e) => setimg4(e.target.files)}
-          class="file-input__input"
+          className="file-input__input"
         />
-        <label class="file-input__label" for="file-input">
+        <label className="file-input__label" htmlFor="file-input">
           <svg
             aria-hidden="true"
             focusable="false"
             data-prefix="fas"
             data-icon="upload"
-            class="svg-inline--fa fa-upload fa-w-16"
+            className="svg-inline--fa fa-upload fa-w-16"
             role="img"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 512 512"

@@ -15,7 +15,7 @@ function EditForm({ setCurID, curID }) {
     }
     getdata();
   }, [curID]);
-  console.log(curData);
+
   return (
     <>
       <div
@@ -35,14 +35,10 @@ function EditForm({ setCurID, curID }) {
       </button>
       <div className="rounded-lg fixed top-1/2 left-1/2 w-1/2 h-1/2 overflow-hidden z-50 -translate-y-1/2 -translate-x-1/2 text-black bg-white">
         <div className="px-2 py-2">
-          <div className="flex  items-center justify-center gap-x-2 h-32  ">
+          <div className="flex  items-start justify-start gap-x-2 h-32  ">
             {curData.urls &&
               curData.urls.map((e) => (
-                <img
-                  src={e}
-                  alt="dskj"
-                  className="w-1/2 object-contain h-full "
-                />
+                <img src={e} alt="dskj" className=" object-contain h-full " />
               ))}
           </div>
           <div className="my-2">

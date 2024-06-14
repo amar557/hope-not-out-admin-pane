@@ -5,6 +5,7 @@ import { NavBarData } from "../../data/SideBarDara";
 function Sidebar() {
   const [open, setOpen] = useState(Array(NavBarData.length).fill(false));
   // const [active, setActive] = useState(0);
+  const ref = useRef();
   function handleMenues(i) {
     setOpen((prev) => {
       const Menues = [...prev];
@@ -26,12 +27,14 @@ function Sidebar() {
       {NavBarData.map((d, i) => (
         <React.Fragment key={i}>
           <NavLink to={d.path}>
-            <div className={`flex justify-between py-2 px-4 items-center  `}>
+            <div
+              className={`flex justify-between py-2 px-4 items-center  `}
+              onClick={() => handleMenues(i)}
+            >
               <li className="list-none  capitalize">{d.label}</li>
 
               {d.isChildren && (
                 <button
-                  onClick={() => handleMenues(i)}
                   className={`${
                     open[i] ? "rotate-90 " : "rotate-0"
                   } transition-all duration-300`}
@@ -41,27 +44,27 @@ function Sidebar() {
               )}
             </div>
           </NavLink>
-          {
+          {d.isChildren && (
             <ul
               className={
                 open[i]
                   ? ` transition-all  h-1/2 overflow-y-hidden duration-300 ps-8 pt-2`
                   : "transition-all h-0  duration-300 overflow-y-hidden ps-8 pt-2"
               }
+              ref={ref}
             >
-              {d.isChildren &&
-                d.children.map((childData, e) => (
-                  <NavLink to={childData.path} key={e}>
-                    <li
-                      className="list hover:cursor-pointer capitalize text-slate-700 font-normal text-sm"
-                      key={e}
-                    >
-                      {childData.label}
-                    </li>
-                  </NavLink>
-                ))}
+              {d.children.map((childData, e) => (
+                <NavLink to={childData.path} key={e}>
+                  <li
+                    className="list hover:cursor-pointer capitalize text-slate-700 font-normal text-sm"
+                    key={e}
+                  >
+                    {childData.label}
+                  </li>
+                </NavLink>
+              ))}
             </ul>
-          }
+          )}
         </React.Fragment>
       ))}
     </div>
